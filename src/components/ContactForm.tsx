@@ -8,7 +8,6 @@ import './styles.css';
 interface Idtype{
     email:string,
     passaword: string,
-
 }
 
 
@@ -19,7 +18,7 @@ export function ContactForm(){
    
     function handleFormSubmit(event: FormEvent){
         event.preventDefault();
-        const data= {
+        const data = {
             email,
             passaword,
         }
@@ -38,6 +37,13 @@ export function ContactForm(){
 
         })
     }, [])// similar to componentDidMount
+
+    function onDelete(id: string){
+        if(window.confirm('Are you sure to delete this record?')){
+            debugger
+            firebaseDb.child(`contacts/${id}`).remove()
+        }
+    }
 
 
     return(
@@ -70,6 +76,10 @@ export function ContactForm(){
                             <tr key={id}>
                             <td>{contactObjects[id].email}</td>
                             <td>{contactObjects[id].passaword}</td>
+
+                            <button onClick={() => onDelete(id)}>
+                                delete
+                            </button>
                         </tr>
                         )
                     })

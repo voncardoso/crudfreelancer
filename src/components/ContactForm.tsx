@@ -12,19 +12,19 @@ interface Idtype{
 
 
 export function ContactForm(){
-    const [email, SetEmail] = useState('');
-    const [passaword, setPassaword] = useState('');
+  //  const [email, SetEmail] = useState('');
+   // const [passaword, setPassaword] = useState('');
     const [contactObjects, setContactObjects] = useState<Idtype[]>([]);
    
-    function handleFormSubmit(event: FormEvent){
-        event.preventDefault();
-        const data = {
-            email,
-            passaword,
-        }
+   // function handleFormSubmit(event: FormEvent){
+    //    event.preventDefault();
+    //    const data = {
+     //       email,
+     //       passaword,
+      //  }
 
-        firebaseDb.child('contacts').push(data);
-       }
+      //  firebaseDb.child('contacts').push(data);
+     //  }
 
        useEffect(() => {
         firebaseDb.child('contacts').on('value', snapshot => {
@@ -48,20 +48,6 @@ export function ContactForm(){
 
     return(
         <>
-        <form onSubmit={handleFormSubmit}>
-            <input 
-                placeholder="Email" 
-                value={email}
-                onChange={event => SetEmail(event.target.value)}
-            />
-            <input  
-                placeholder="Senha"
-                value={passaword}
-                onChange={event => setPassaword(event.target.value)}
-             />
-            <button type="submit">
-                Cadatrar
-            </button>
             <thead >
                 <tr>
                     <th>Email</th>
@@ -85,7 +71,6 @@ export function ContactForm(){
                     })
                 }
             </tbody>
-        </form>
         </>
     );
 }

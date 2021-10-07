@@ -1,15 +1,16 @@
 import React from 'react';
-import { Contact } from './components/Contatc';
-import { Login } from './components/Login';
+
+
 import { BrowserRouter, Route , Switch } from "react-router-dom";
+import { cadastro } from './pages/cadastro';
+import { login } from './pages/login';
 
 export function App() {
   return ( 
     <BrowserRouter>
-
     <Switch>
-      <Route path="/" exact component={Login}/>
-      <Route path="/contact" component={Contact}/>
+      <Route path="/" exact component={login}/>
+      <Route path="/cadastro" exact component={cadastro}/>
     </Switch>
     </BrowserRouter>
   );

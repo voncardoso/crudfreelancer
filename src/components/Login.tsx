@@ -1,6 +1,6 @@
 export function Login(){
     return(
-       <a href="/contact">
+       <a href="/cadastro">
            Castrar
        </a>
     )

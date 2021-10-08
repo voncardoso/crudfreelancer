@@ -1,4 +1,4 @@
-import { Contact } from "../components/Contatc";
+import { Contact } from "../components/cadastro/Contatc";
 
 export function cadastro(){
     return(

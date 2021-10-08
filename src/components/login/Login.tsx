@@ -2,7 +2,7 @@ import { error } from "console";
 import { useState, useEffect, FormEvent } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { createBrowserHistory } from "history"
-import firebaseDb from "../firebase";
+import firebaseDb from "../../firebase"
 
 interface IdLogin{
     email:string,

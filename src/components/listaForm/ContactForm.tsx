@@ -1,7 +1,7 @@
 import { database } from "firebase";
 import { Children, FormEvent, useEffect, useRef, useState } from "react";
-import firebaseDb from "../firebase";
-import './styles.css';
+import firebaseDb from "../../firebase";
+
 
 
 

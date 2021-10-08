@@ -59,6 +59,7 @@ export function Login(){
     return(
     <ContainerLogin onSubmit={authentication}>
             <form>
+                <h1>Login</h1>
                 <input 
                     placeholder="Email" 
                     value={emailLogin}
@@ -72,6 +73,10 @@ export function Login(){
                 <button >
                     Login
                  </button>
+
+                 <a href="">
+                     Caastrar
+                 </a>
             </form>    
                 <img src={Logo} alt="" />       
     </ContainerLogin>

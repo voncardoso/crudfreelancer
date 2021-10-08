@@ -1,12 +1,7 @@
-import { error } from "console";
-import { useState, useEffect, FormEvent } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { createBrowserHistory } from "history"
+import { useState, useEffect } from "react";
+import {  useHistory } from "react-router-dom";
 import firebaseDb from "../../firebase"
-
-import {
-    ContainerLogin,
-} from './style';
+import { ContainerLogin } from './style';
 
 import Logo from "../../assets/Login.svg";
 
@@ -23,7 +18,7 @@ export function Login(){
     const [emailLogin, SetEmailLogin] = useState('');
     const [passawordLogin, setPassawordLogin] = useState('');
 
-    let history = useHistory();
+    const history = useHistory();
      
       
 
@@ -48,10 +43,7 @@ export function Login(){
 
         Object.keys(loginObjects).map((id: any) => {
                if(loginObjects[id].email === data.emailLogin && loginObjects[id].passaword === data.passawordLogin){
-                    //return <Redirect to='/listaCadastro'/>
                    return history.push("/listaCadastro");
-               }else{
-                return window.confirm('Email ou senha incorreta')
                }
         })
     }
@@ -68,17 +60,18 @@ export function Login(){
                 <input 
                     placeholder="senha"
                     value={passawordLogin}
+                    type="password"
                     onChange={event => setPassawordLogin(event.target.value)}
                 />
                 <button >
                     Login
                  </button>
 
-                 <a href="">
+                 <a href="/cadastro">
                      Caastrar
                  </a>
             </form>    
-                <img src={Logo} alt="" />       
+                <img src={Logo} alt="Logo Login" />       
     </ContainerLogin>
 
     )

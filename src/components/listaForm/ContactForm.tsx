@@ -1,6 +1,12 @@
-import { database } from "firebase";
+import Modal from 'react-modal';
 import { Children, FormEvent, useEffect, useRef, useState } from "react";
 import firebaseDb from "../../firebase";
+import {ContainerList, Container} from './style';
+
+import { AiOutlineDelete } from 'react-icons/ai';
+import { GrUpdate } from 'react-icons/gr';
+import closeImg from '../../assets/close.svg';
+
 
 
 
@@ -10,21 +16,13 @@ interface Idtype{
     passaword: string,
 }
 
+Modal.setAppElement('#root');
 
 export function ContactForm(){
-  //  const [email, SetEmail] = useState('');
-   // const [passaword, setPassaword] = useState('');
-    const [contactObjects, setContactObjects] = useState<Idtype[]>([]);
-   
-   // function handleFormSubmit(event: FormEvent){
-    //    event.preventDefault();
-    //    const data = {
-     //       email,
-     //       passaword,
-      //  }
 
-      //  firebaseDb.child('contacts').push(data);
-     //  }
+    const [contactObjects, setContactObjects] = useState<Idtype[]>([]);
+    const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+
 
        useEffect(() => {
         firebaseDb.child('contacts').on('value', snapshot => {
@@ -38,6 +36,8 @@ export function ContactForm(){
         })
     }, [])// similar to componentDidMount
 
+
+
     function onDelete(id: string){
         if(window.confirm('Are you sure to delete this record?')){
             debugger
@@ -45,32 +45,74 @@ export function ContactForm(){
         }
     }
 
-
+    function handleOpenNewTransactionModal() {
+        setIsNewTransactionModalOpen(true);
+    }
+  
+    function handleCloseNewTransactionModal() {
+        setIsNewTransactionModalOpen(false);
+    }
     return(
-        <>
-            <thead >
-                <tr>
-                    <th>Email</th>
-                    <th>Password</th>
+        <ContainerList>
 
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    Object.keys(contactObjects).map((id: any) => {
-                        return (
-                            <tr key={id}>
-                            <td>{contactObjects[id].email}</td>
-                            <td>{contactObjects[id].passaword}</td>
+            <table>
+                <thead >
+                    <tr>
+                        <th>Email</th>
+                        <th>Password</th>
 
-                            <button onClick={() => onDelete(id)}>
-                                delete
-                            </button>
-                        </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        Object.keys(contactObjects).map((id: any) => {
+                            return (
+
+                                <tr  key={id}>
+                                    <td 
+                                        className="trWith-1">
+                                        {contactObjects[id].email}
+                                    </td>
+                                    <td className="trWith-2">{contactObjects[id].passaword}</td>
+                                    <button onClick={() => onDelete(id)}>
+                                        <AiOutlineDelete/>
+                                    </button>
+                                    <button className="update"onClick={handleOpenNewTransactionModal} >
+                                        <GrUpdate/>
+                                    </button>
+                                </tr>
+
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+
+            
+                <Modal
+                    isOpen={isNewTransactionModalOpen}
+                    onRequestClose={handleCloseNewTransactionModal}
+                    overlayClassName="react-modal-overlay"
+                    className="react-modal-content"
+                >
+                     <Container>
+                        <h2>Atulizar cadastro</h2>
+                        
+                        <input 
+                            placeholder="Email" 
+                        />
+                            <input 
+                            placeholder="senha"
+                            type="password"
+                        />
+
+                        <button type="submit">
+                            Atualizar
+                        </button>
+                    </Container>
+                </Modal>
+                
+            
+        </ContainerList>
     );
 }

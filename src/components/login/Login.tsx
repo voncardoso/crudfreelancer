@@ -4,6 +4,14 @@ import { Redirect, useHistory } from "react-router-dom";
 import { createBrowserHistory } from "history"
 import firebaseDb from "../../firebase"
 
+import {
+    ContainerLogin,
+} from './style';
+
+import Logo from "../../assets/Login.svg";
+
+
+
 interface IdLogin{
     email:string,
     passaword: string,
@@ -49,20 +57,24 @@ export function Login(){
     }
 
     return(
-        <form onSubmit={authentication}>
-        <input 
-         placeholder="Email" 
-         value={emailLogin}
-         onChange={event => SetEmailLogin(event.target.value)}
-         />
-        <input 
-            placeholder="senha"
-            value={passawordLogin}
-            onChange={event => setPassawordLogin(event.target.value)}
-        />
-            <button >
-                Login
-            </button>
-    </form>
+    <ContainerLogin onSubmit={authentication}>
+            <form>
+                <input 
+                    placeholder="Email" 
+                    value={emailLogin}
+                    onChange={event => SetEmailLogin(event.target.value)}
+                />
+                <input 
+                    placeholder="senha"
+                    value={passawordLogin}
+                    onChange={event => setPassawordLogin(event.target.value)}
+                />
+                <button >
+                    Login
+                 </button>
+            </form>    
+                <img src={Logo} alt="" />       
+    </ContainerLogin>
+
     )
    }

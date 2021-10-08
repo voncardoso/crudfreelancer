@@ -5,6 +5,7 @@ import './styles.css';
 
 
 
+
 export function Contact(){
     const [email, SetEmail] = useState('');
     const [passaword, setPassaword] = useState('');
@@ -18,6 +19,7 @@ export function Contact(){
 
         firebaseDb.child('contacts').push(data);
        }
+       
     return(
         <>
         <h1>Cadastrar Usuario</h1>

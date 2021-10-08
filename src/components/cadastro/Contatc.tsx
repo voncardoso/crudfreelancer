@@ -42,6 +42,7 @@ export function Contact(){
             <input  
                 placeholder="Senha"
                 value={passaword}
+                type="password"
                 onChange={event => setPassaword(event.target.value)}
              />
             <button type="submit">

@@ -66,7 +66,7 @@ export const GLobalStyle = createGlobalStyle`
         background: var(--background);
         padding: 3rem;
         position: relative;
-        border-radius: 0.24rem;
+        border-radius: 0.5rem;
     }
 
     .rect-modal-close {

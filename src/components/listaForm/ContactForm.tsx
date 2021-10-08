@@ -82,43 +82,40 @@ export function ContactForm(){
                                         {contactObjects[id].email}
                                     </td>
                                     <td className="trWith-2">{contactObjects[id].passaword}</td>
+                    
                                     <button onClick={() => onDelete(id)}>
                                         <AiOutlineDelete/>
                                     </button>
                                     <button className="update"onClick={handleOpenNewTransactionModal} >
                                         <GrUpdate/>
                                     </button>
-                                    
 
+                                        <Modal
+                                            isOpen={isNewTransactionModalOpen}
+                                            onRequestClose={handleCloseNewTransactionModal}
+                                            overlayClassName="react-modal-overlay"
+                                            className="react-modal-content"
+                                        >
+                                            <Container >
+                                                    
+                                                    <h2>Atulizar cadastro</h2>
+                                                    <input key={id}
+                                                        placeholder="Email" 
+                                                        value={email}
+                                                        onChange={event => SetEmail(event.target.value)}
+                                                    />
+                                                        <input key={id}
+                                                        placeholder="senha"
+                                                        type="password"
+                                                        value={passaword}
+                                                        onChange={event => setPassaword(event.target.value)}
+                                                    />
 
-
-
-                <Modal
-                    isOpen={isNewTransactionModalOpen}
-                    onRequestClose={handleCloseNewTransactionModal}
-                    overlayClassName="react-modal-overlay"
-                    className="react-modal-content"
-                >
-                     <Container >
-                             
-                            <h2>Atulizar cadastro</h2>
-                            <input key={id}
-                                placeholder="Email" 
-                                value={email}
-                                onChange={event => SetEmail(event.target.value)}
-                            />
-                                <input key={id}
-                                placeholder="senha"
-                                type="password"
-                                value={passaword}
-                                onChange={event => setPassaword(event.target.value)}
-                            />
-
-                            <button type="submit" onClick={() => updateList(id)}>
-                                Atualizar
-                            </button>
-                    </Container>
-                </Modal>
+                                                    <button type="submit" onClick={() => updateList(id)}>
+                                                        Atualizar
+                                                    </button>
+                                            </Container>
+                                        </Modal>
                                 </tr>
                             
                             )
@@ -127,10 +124,7 @@ export function ContactForm(){
                 </tbody>
             </table>
 
-            
-                
-                
-            
+            <a href="/" className="loginVoltar">Login</a>
         </ContainerList>
     );
 }

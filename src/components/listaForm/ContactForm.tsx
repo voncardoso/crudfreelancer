@@ -19,7 +19,8 @@ interface Idtype{
 Modal.setAppElement('#root');
 
 export function ContactForm(){
-
+    const [email, SetEmail] = useState('');
+    const [passaword, setPassaword] = useState('');
     const [contactObjects, setContactObjects] = useState<Idtype[]>([]);
     const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
 
@@ -36,7 +37,14 @@ export function ContactForm(){
         })
     }, [])// similar to componentDidMount
 
-
+    function updateList(id: string){
+        const data = {
+            email,
+            passaword,
+        }
+        console.log(id);
+        return (firebaseDb.child(`contacts/${id}`).update(data));
+    }
 
     function onDelete(id: string){
         if(window.confirm('Are you sure to delete this record?')){
@@ -80,8 +88,39 @@ export function ContactForm(){
                                     <button className="update"onClick={handleOpenNewTransactionModal} >
                                         <GrUpdate/>
                                     </button>
-                                </tr>
+                                    
 
+
+
+
+                <Modal
+                    isOpen={isNewTransactionModalOpen}
+                    onRequestClose={handleCloseNewTransactionModal}
+                    overlayClassName="react-modal-overlay"
+                    className="react-modal-content"
+                >
+                     <Container >
+                             
+                            <h2>Atulizar cadastro</h2>
+                            <input key={id}
+                                placeholder="Email" 
+                                value={email}
+                                onChange={event => SetEmail(event.target.value)}
+                            />
+                                <input key={id}
+                                placeholder="senha"
+                                type="password"
+                                value={passaword}
+                                onChange={event => setPassaword(event.target.value)}
+                            />
+
+                            <button type="submit" onClick={() => updateList(id)}>
+                                Atualizar
+                            </button>
+                    </Container>
+                </Modal>
+                                </tr>
+                            
                             )
                         })
                     }
@@ -89,28 +128,7 @@ export function ContactForm(){
             </table>
 
             
-                <Modal
-                    isOpen={isNewTransactionModalOpen}
-                    onRequestClose={handleCloseNewTransactionModal}
-                    overlayClassName="react-modal-overlay"
-                    className="react-modal-content"
-                >
-                     <Container>
-                        <h2>Atulizar cadastro</h2>
-                        
-                        <input 
-                            placeholder="Email" 
-                        />
-                            <input 
-                            placeholder="senha"
-                            type="password"
-                        />
-
-                        <button type="submit">
-                            Atualizar
-                        </button>
-                    </Container>
-                </Modal>
+                
                 
             
         </ContainerList>

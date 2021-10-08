@@ -62,7 +62,7 @@ export function ContactForm(){
     }
     return(
         <ContainerList>
-
+            <a href="/" className="loginVoltar">Login</a>
             <table>
                 <thead >
                     <tr>
@@ -82,13 +82,14 @@ export function ContactForm(){
                                         {contactObjects[id].email}
                                     </td>
                                     <td className="trWith-2">{contactObjects[id].passaword}</td>
-                    
+    
                                     <button onClick={() => onDelete(id)}>
                                         <AiOutlineDelete/>
                                     </button>
                                     <button className="update"onClick={handleOpenNewTransactionModal} >
                                         <GrUpdate/>
                                     </button>
+                                    
 
                                         <Modal
                                             isOpen={isNewTransactionModalOpen}
@@ -119,12 +120,13 @@ export function ContactForm(){
                                 </tr>
                             
                             )
+                           
                         })
                     }
                 </tbody>
             </table>
-
-            <a href="/" className="loginVoltar">Login</a>
+            
+            
         </ContainerList>
     );
 }

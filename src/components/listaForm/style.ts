@@ -13,6 +13,7 @@ export const ContainerList = styled.div`
         .loginVoltar{
          position: relative;
          margin-top: 250px;
+         padding: 20px;
          right: 350px;
          text-decoration: none;
          color: #3751FE;

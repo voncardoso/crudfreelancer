@@ -8,12 +8,12 @@ import {GLobalStyle} from './styles/global'
 export function App() {
   return ( 
     <BrowserRouter>
-    <Switch>
-      <Route path="/" exact component={login}/>
-      <Route path="/cadastro" exact component={cadastro}/>
-      <Route path="/listaCadastro" exact component={listaCadastro}/>
-    </Switch>
-    <GLobalStyle/>
+        <Switch>
+          <Route path="/" exact component={login}/>
+          <Route path="/cadastro" exact component={cadastro}/>
+          <Route path="/listaCadastro" exact component={listaCadastro}/>
+        </Switch>
+        <GLobalStyle/>
     </BrowserRouter>
   );
 }
